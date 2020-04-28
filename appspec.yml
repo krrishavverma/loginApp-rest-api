@@ -3,7 +3,3 @@ os: windows
 files:
   - source: /app.wsgi
     destination: /
-hooks:
-  AfterInstall:
-    - location: requirements.txt  
-      timeout: 300
