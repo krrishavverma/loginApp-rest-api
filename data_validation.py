@@ -6,6 +6,7 @@ import time
 def user_data_validation(self, userDetail):
     gender_match = False
     date0fbirth_match = False
+    invalidMsg = []
 
     user_password = userDetail['password']
     password_expression = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}"
@@ -58,4 +59,15 @@ def user_data_validation(self, userDetail):
     if (password_match and email_match and phone_match and gender_match and date0fbirth_match):
         return True
     else:
-        return False
+        if password_match is None:
+            invalidMsg.append("Invalid password")
+        if email_match is None:
+            invalidMsg.append("Invalid Email")
+        if phone_match is None:
+            invalidMsg.append("Invalid phone number")
+        if gender_match == False:
+            invalidMsg.append("Invalid gender")
+        if date0fbirth_match == False:
+            invalidMsg.append("Invalid date of birth")
+    
+    return invalidMsg
